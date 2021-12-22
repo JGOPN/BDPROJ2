@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block content %}
-  <h2>Search results</h2>
+  <h2>Resultado da Procura </h2>
   <p><ul>
     {% for a in funcionário %}      
-      <li><a href="/funcionario/{{ a.ID }}">{{ a.Nome }}</a></li>
+      <li><a href="/funcionário/{{ funcionário.ID }}">{{ funcionário.Nome }}</a></li>
     {% endfor %}
     </ul>
   </p>
