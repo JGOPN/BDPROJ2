@@ -36,6 +36,12 @@
    Album Id:<input value="1" name="id" type="number" min="1"/><input type="submit" value="get"/>
 </form>
 </p>
+<p>Procurar por titulo:
+  <form name="asearch" action="javascript:window.open('/albums/search/'+document.forms['asearch'].elements['expr'].value,'_self')">
+    <input name="expr" id="expr" value="" required/>
+    <input type="submit" value="search"/>
+  </form>
+  </p>
 
 
 {% endblock %}

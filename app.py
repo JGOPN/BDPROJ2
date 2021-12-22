@@ -21,7 +21,7 @@ def index():
     logging.info(stats)
     return render_template('index.html',stats=stats)
 
-# Products
+# Albums
 @APP.route('/albums/')
 def list_albums():
     albums = db.execute(
@@ -57,23 +57,36 @@ def get_album(id):
   return render_template('album.html', 
            album=album, genre=genre)
 
+@APP.route('/albums/search/<expr>/')
+def search_albums(expr):
+  search = { 'expr': expr }
+  expr = '%' + expr + '%'
+  album = db.execute(
+      ''' 
+      SELECT IdDisc, Titulo, AUTOR.Nome
+      FROM DISCO JOIN AUTOR ON (Autor = IdAut)
+      WHERE Titulo LIKE %s
+      ''', expr).fetchall()
+  return render_template('album-search.html',
+           search=search,album=album)
+
 # FUNCIONARIOS
 @APP.route('/funcionarios/')
 def list_funcionarios():
     funcionários = db.execute(
       '''
       SELECT ID, Nome, DataNasc, Sexo, Cidade
-      FROM FUNCIONARIO
+      FROM FUNCIONÁRIO 
       ORDER BY Nome
       ''').fetchall()
-    return render_template('funcionario-list.html', funcionários=funcionários)
+    return render_template('func-list.html', funcionários=funcionários)
 
 @APP.route('/funcionarios/<int:id>/')
 def get_funcionario(ID):
   funcionario = db.execute(
       '''
       SELECT ID, Nome, DataNasc, Sexo, Cidade
-      FROM FUNCIONARIO
+      FROM FUNCIONÁRIO 
       WHERE ID = %s
       ''', id).fetchone()
 
