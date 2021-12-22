@@ -70,6 +70,19 @@ def search_albums(expr):
   return render_template('album-search.html',
            search=search,album=album)
 
+@APP.route('/albums/searchbyaut/<expr>/')
+def search_albums_byaut(expr):
+  search = { 'expr': expr }
+  expr = '%' + expr + '%'
+  album = db.execute(
+      ''' 
+      SELECT IdDisc, Titulo, AUTOR.Nome
+      FROM DISCO JOIN AUTOR ON (Autor = IdAut)
+      WHERE AUTOR.Nome LIKE %s
+      ''', expr).fetchall()
+  return render_template('album-search-byaut.html',
+           search=search,album=album)
+
 # FUNCIONARIOS
 @APP.route('/funcionarios/')
 def list_funcionarios():
