@@ -7,8 +7,8 @@
 {% block content %}
   <h2>Resultado da Procura </h2>
   <p><ul>
-    {% for a in funcionário %}      
-      <li><a href="/funcionário/{{ funcionário.ID }}">{{ funcionário.Nome }}</a></li>
+    {% for func in funcionário %}      
+      <li><a href="/funcionario/{{ func.ID }}">{{ func.Nome }}</a></li>
     {% endfor %}
     </ul>
   </p>
