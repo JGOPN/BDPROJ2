@@ -86,13 +86,13 @@ def search_albums_byaut(expr):
 # FUNCIONARIOS
 @APP.route('/funcionarios/')
 def list_funcionarios():
-    funcionários = db.execute(
+    funcionarios = db.execute(
       '''
       SELECT ID, Nome, DataNasc, Sexo, Cidade
       FROM FUNCIONÁRIO 
       ORDER BY Nome
       ''').fetchall()
-    return render_template('func-list.html', funcionários=funcionários)
+    return render_template('func-list.html', funcionarios=funcionarios)
 
 @APP.route('/funcionarios/<int:id>/')
 def get_funcionario(ID):
