@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- 
+  Conteúdo apenas simples para começar. 
+ 
+  Veja aplicação fazendo interface à MovieStream para exemplos concretos.
+-->
+<h2>Estatisticas sobre a BD</h2>
+<table>
+<tr>
+  <th>Items</th>
+  <th>Contagem</th>
+</tr>
+<tr>
+  <td>Produtos</td>
+  <td>{{ stats.products }}</td>
+</tr>
+<tr>
+  <td>Artistas</td>
+  <td>{{ stats.artists }}</td>
+</tr>
+<tr>
+  <td>Clientes</td>
+  <td>{{ stats.customers }}</td>
+</tr>
+</table>
+
+<h3>Albums</h3>
+<p>
+   <a href="/albums">Listar todos</a>
+</p>
+<p>Obter informacao pro ID:
+<form name="mid" action="javascript:window.open('/albums/'+document.forms['mid'].elements['id'].value,'_self')">
+   Album Id:<input value="1" name="id" type="number" min="1"/><input type="submit" value="get"/>
+</form>
+</p>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ album.Titulo }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Informacoes sobre album</h2>
+  <p>
+    <b>Album ID: </b>{{ album.IdDisc }}
+  </p>
+  <p>
+    <b>Titulo: </b>{{ album.Titulo }} ({{ album.Formato }})
+  </p>
+  <p>
+    <b>Autor: </b>{{ album.Nome }}
+  </p>
+  <p>
+    <b>Ano: </b>{{ album.AnoLançamento }}
+  </p>
+  <p>
+    <b>Duracao: </b>{{ album.Duracao }} 
+  </p>
+  <p>
+    <b>Descricao: </b>{{ album.Descricao }} 
+  </p>
+  <p>
+    <b>Generos: </b><ul>
+      {% for gen in genre %}      
+        <li>{{ gen.Genero }}</li>
+      {% endfor %}
+      </ul>
+  </p>
+  
+{% endblock %}
