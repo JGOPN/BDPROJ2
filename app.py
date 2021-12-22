@@ -66,7 +66,7 @@ def list_funcionarios():
       FROM FUNCIONARIO
       ORDER BY Nome
       ''').fetchall()
-    return render_template('funcionario-list.html', funcionários=funcionários)
+    return render_template('func-list.html', funcionários=funcionários)
 
 @APP.route('/funcionarios/<int:id>/')
 def get_funcionario(ID):
