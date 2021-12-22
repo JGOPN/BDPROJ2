@@ -86,24 +86,26 @@ def search_albums_byaut(expr):
 # FUNCIONARIOS
 @APP.route('/funcionarios/')
 def list_funcionarios():
-    funcionários = db.execute(
+    funcionarios = db.execute(
       '''
       SELECT ID, Nome, DataNasc, Sexo, Cidade
       FROM FUNCIONÁRIO 
       ORDER BY Nome
       ''').fetchall()
-    return render_template('func-list.html', funcionários=funcionários)
+    return render_template('func-list.html',funcionarios=funcionarios)
 
 @APP.route('/funcionarios/<int:id>/')
-def get_funcionario(ID):
-  funcionario = db.execute(
+def get_funcionario(id):
+  funcionarios = db.execute(
       '''
       SELECT ID, Nome, DataNasc, Sexo, Cidade
       FROM FUNCIONÁRIO 
       WHERE ID = %s
       ''', id).fetchone()
 
-  if funcionario is None:
-     abort(404, 'Funcionario id {} does not exist.'.format(ID))
+  if funcionarios is None:
+     abort(404, 'Funcionario id {} does not exist.'.format(id))
+
+  return render_template('func.html', funcionarios=funcionarios)
 
 
