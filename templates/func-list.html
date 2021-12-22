@@ -8,7 +8,7 @@
   <h2>Search results</h2>
   <p><ul>
     {% for a in funcionário %}      
-      <li><a href="/funcionário/{{ a.ID }}">{{ a.Nome }}</a></li>
+      <li><a href="/funcionário/{{ funcionário.ID }}">{{ funcionário.Nome }}</a></li>
     {% endfor %}
     </ul>
   </p>
