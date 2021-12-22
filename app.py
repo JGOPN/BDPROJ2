@@ -16,6 +16,8 @@ def index():
     stats.update(x)
     x = db.execute('SELECT COUNT(*) AS customers FROM CLIENTE').fetchone()
     stats.update(x)
+    x = db.execute('SELECT COUNT(*) AS staff FROM FUNCIONÁRIO ').fetchone()
+    stats.update(x)
     logging.info(stats)
     return render_template('index.html',stats=stats)
 
@@ -54,3 +56,28 @@ def get_album(id):
     
   return render_template('album.html', 
            album=album, genre=genre)
+
+# FUNCIONARIOS
+@APP.route('/funcionarios/')
+def list_funcionarios():
+    funcionários = db.execute(
+      '''
+      SELECT ID, Nome, DataNasc, Sexo, Cidade
+      FROM FUNCIONARIO
+      ORDER BY Nome
+      ''').fetchall()
+    return render_template('funcionario-list.html', funcionários=funcionários)
+
+@APP.route('/funcionarios/<int:id>/')
+def get_funcionario(ID):
+  funcionario = db.execute(
+      '''
+      SELECT ID, Nome, DataNasc, Sexo, Cidade
+      FROM FUNCIONARIO
+      WHERE ID = %s
+      ''', id).fetchone()
+
+  if funcionario is None:
+     abort(404, 'Funcionario id {} does not exist.'.format(ID))
+
+
