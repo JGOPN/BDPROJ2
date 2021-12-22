@@ -1,15 +1,24 @@
-{% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}{{ search.expr }} {% endblock %}</h1>
+  <h1>{% block title %}Funcionário{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <h2>Search results</h2>
-  <p><ul>
-    {% for a in funcionário %}      
-      <li><a href="/funcionário/{{ funcionário.ID }}">{{ funcionário.Nome }}</a></li>
-    {% endfor %}
-    </ul>
-  </p>
+  <table> 
+  <tr>
+    <th><b>ID</b></th>
+    <th><b>Nome</b></th>
+    <th><b>Idade</b></th>
+    <th><b>Cidade</b></th>
+   </tr>
+   
+  {% for func in funcionário %}
+    <tr>
+      <td><a href="/funcionario/{{ func.ID }}">{{ func.ID }}</a></td>
+      <td>{{ func.Nome }}</td>
+      <td>{{ func.Idade }}</td>
+      <td>{{ func.Cidade }}</td>
+    </tr>
+  {% endfor %}
+  </table>
 {% endblock %}
