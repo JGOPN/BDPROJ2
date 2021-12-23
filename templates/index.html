@@ -31,7 +31,7 @@
 <p>
    <a href="/albums">Listar todos</a>
 </p>
-<p>Obter informacao pro ID:
+<p>Obter informacao por ID:
 <form name="mid" action="javascript:window.open('/albums/'+document.forms['mid'].elements['id'].value,'_self')">
    Album Id:<input value="1" name="id" type="number" min="1"/><input type="submit" value="get"/>
 </form>
@@ -48,7 +48,16 @@
     <input type="submit" value="search"/>
   </form>
 </p>
-
+<p>Procurar por genero:
+  <form name="asearchbygen" action="javascript:window.open('/albums/searchbygen/'+document.forms['asearchbygen'].elements['expr'].value,'_self')">
+    <select name="selectgenero" id="expr">
+      {% for genero in generos %}
+        <option value="{{ genero.Genero }}">{{ genero.Genero }}</option>
+      {% endfor %}
+      </select>
+    <input type="submit" value="search"/>
+  </form>
+</p>
 
 <h3>Funcionários</h3>
 <p>
