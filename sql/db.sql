@@ -174,22 +174,57 @@ INSERT INTO DEPARTAMENTO (NomeDepartamento, Gerente, Descricao) VALUES
 INSERT INTO CLIENTE (Nome, DataNasc, Sexo, Cidade, Rua, Num, Andar, CP, Email, Senha, Telefone) VALUES
 ('António', '2000-10-23', NULL, 'Braga', 'Rua Zé', 4353, '4º', 4593843, 'antonio32@gmail.com', 'skfjeror', '843954834'),
 ('Rita', '1999-10-15', 'F', 'Lisboa', 'Rua camará', 55, NULL, 2390598, 'rita234@gmail.com', 'sdfklsd', '948394839'),
-('Joana', '2000-10-23', NULL, 'Braga', 'Rua Zé', 4353, NULL, 4593843, 'joana47@gmail.com', 'skfjeror', '843954834'),
-('Marcos', '1995-12-14', 'M', 'Braga', 'Manuel de arriaga', 333, '1º', 4346542, 'marcos111@gmail.com', 'fgslgfwq', '904376949');
+('Joana', '2000-10-23', NULL, 'Braga', 'Rua dom manuel', 22, '4º', 4593843, 'joana47@gmail.com', 'skfjeror', '843954834'),
+('Carlos', '2001-06-18', 'M', 'Porto', 'Rua Amalia', 43, '2º', 4593843, 'car@hotmail.com', 'edef3e3r', '99994834'),
+('João', '2009-06-15', 'M', 'Porto', 'Rua Peixoto', 7788, '4º', 4593843, 'jmc@hotmail.com', '2324fef3e3r', '48349999'),
+('Maria', '2008-07-15', 'F', 'Aveiro', 'Rua Maria Rita', 96, '7º', 4593843, 'mar@hotmail.com', '58473473rijr', '99866734'),
+('Afonso', '1995-05-16', 'M', 'Aveiro', 'Rua bandeirantes', 444, NULL, 4593843, 'afonso@gamil.com', 'sdfklsd', '843954834'),
+('Joana Carla', '1996-10-14', NULL, 'Braga', 'Rua 31 de janeiro', 967, NULL, 4593843, 'joama@gmail.com', 'euh23ouh38', '979048393'),
+('Marcos', '1995-12-04', 'M', 'Aveiro', 'Rua Manuel de arriaga', 234, '1º', 4346542, 'marcos111@gmail.com', 'fgslgfwq', '904376949');
 
 INSERT INTO DESCONTO (CodigoDesconto, ValorDesconto, DataInicio, DataFim) VALUES
-('A3C2OZ23', 50.00, '2021-10-01', '2022-01-01'), ('FELZNATL', 30.00, '2021-12-20', '2022-01-01');
+('A3C2OZ23', 10.00, '2021-10-01', '2022-01-01'), ('FELZNATL', 5.00, '2021-12-20', '2022-01-01');
 
 INSERT INTO ENCOMENDA_CLIENTE  (DataPagamento, ValorTotal, DescontoAplicado, Cliente) VALUES
-('2021-05-10', 10.00, 1, 1),
-('2021-06-12', 666.00, 2, 2),
-('2021-04-22', 664.00, 2, 3),
+('2021-05-10', 50.00, 1, 1),
+('2021-06-12', 60.00, 2, 2),
+('2021-04-22', 6.00, 2, 3),
 ('2021-03-15', 864.00, 2, 4),
 ('2018-06-17', 222.00, 1, 3),
-('2021-07-18', 45.00, 1, 3),
+('2021-07-18', 450.00, 1, 3),
 ('2021-09-03', 743.00, 2, 4),
 ('2019-03-04', 22.00, 1, 2),
 ('2019-04-04', 11.00, 2, 3),
+('2019-05-05', 33.00, 1, 4),
+('2019-06-06', 44.00, 2, 4),
+('2019-07-07', 55.00, 1, 4),
+('2019-08-08', 66.00, 2, 4),
+('2019-09-09', 77.00, 1, 4),
+('2019-10-10', 88.00, 2, 4),
+('2019-11-11', 99.00, 1, 4),
+('2019-12-12', 49.00, 2, 4),
+('2020-01-13', 36.00, 1, 4),
+('2020-02-14', 22.00, 2, 4),
+('2020-03-15', 33.00, 1, 4),
+('2020-04-16', 44.00, 2, 4),
+('2020-05-17', 55.00, 1, 4),
+('2020-06-18', 66.00, 2, 4),
+('2020-07-19', 77.00, 1, 4),
+('2020-08-20', 88.00, 2, 4),
+('2020-09-21', 99.00, 1, 4),
+('2020-10-22', 10.00, 2, 4),
+('2020-11-23', 110.00, 1, 4),
+('2020-12-24', 122.00, 2, 4),
+('2021-01-25', 133.00, 1, 4),
+('2021-02-26', 144.00, 2, 4),
+('2021-03-27', 155.00, 1, 4),
+('2021-04-28', 34.00, 2, 4),
+('2021-05-29', 17.00, 1, 4),
+('2021-06-30', 18.00, 2, 4),
+('2021-07-31', 190.00, 1, 4),
+('2021-08-01', 20.00, 2, 4),
+('2021-09-02', 111.00, 1, 4),
+('2021-10-03', 122.00, 2, 4),
 ('2021-06-01', 19.00, 1, 1);
 
 INSERT INTO STATUS_ENCOMENDA(NumPedido, StatusEncomenda, Descricao) VALUES
@@ -235,7 +270,20 @@ INSERT INTO FORNECEDOR (NomeFornecedor, Cidade, Rua, Num, Andar, CP, Email, Tele
 ('Big Phono', 'Londres', 'Earl Longjohnson Street', 5, '5Esq', '123455921', 'johnmclovin@bigphono.com', '44123456789');
 
 INSERT INTO PEDIDO_FORNECEDOR (Fornecedor, Produto, NumUnidades, DataPedido) VALUES
-(1, 4, 50, '2021-10-20'), (2, 2, 100, '2021-10-12');
+(1, 1, 25, '2020-10-21'), 
+(2, 2, 13, '2020-09-03'),
+(2, 5, 17, '2019-09-03'),
+(2, 6, 17, '2019-01-05'),
+(3, 7, 51, '2019-03-20'),
+(3, 9, 18, '2020-03-21'),
+(1, 10, 2, '2021-06-21'),
+(1, 8, 1, '2021-07-21'),
+(1, 7, 1, '2021-08-16'),
+(3, 4, 1, '2021-09-16'),
+(3, 4, 1, '2021-10-17'),
+(2, 5, 1, '2021-11-15'),
+(2, 6, 1, '2021-12-03'),
+(2, 8, 5, '2021-10-18');
 
 DROP VIEW IF EXISTS DISCO_GENERO;
 
