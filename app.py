@@ -19,7 +19,13 @@ def index():
     x = db.execute('SELECT COUNT(*) AS staff FROM FUNCIONÁRIO ').fetchone()
     stats.update(x)
     logging.info(stats)
-    return render_template('index.html',stats=stats)
+
+    generos = db.execute(
+      '''
+      SELECT Genero, IdGen FROM GENERO
+      '''
+    )
+    return render_template('index.html',stats=stats,generos=generos)
 
 # Albums
 @APP.route('/albums/')
@@ -54,8 +60,15 @@ def get_album(id):
     WHERE IdDisc = %s
     ''', id).fetchall()
     
+  product = db.execute(
+    '''
+    SELECT NumExemplares, Valor 
+    FROM PRODUTO
+    WHERE IdDisc = %s 
+    ''', id).fetchone()
+
   return render_template('album.html', 
-           album=album, genre=genre)
+           album=album, genre=genre, product=product)
 
 @APP.route('/albums/search/<expr>/')
 def search_albums(expr):
@@ -83,12 +96,23 @@ def search_albums_byaut(expr):
   return render_template('album-search-byaut.html',
            search=search,album=album)
 
+@APP.route('/albums/searchbygen/<expr>/')
+def search_by_genre(expr):
+  album = db.execute(
+      '''
+      SELECT IdDisc, Titulo, AUTOR.Nome, Genero
+      FROM DISCO JOIN AUTOR ON (Autor = IdAut) NATURAL JOIN GENEROS_DISCO NATURAL JOIN GENERO
+      WHERE Genero = %s
+      ''', expr).fetchall()
+
+  return render_template('album-search-bygen.html', album=album)
+
 # FUNCIONARIOS
 @APP.route('/funcionarios/')
 def list_funcionarios():
     funcionarios = db.execute(
       '''
-      SELECT ID, Nome, DataNasc, Sexo, Cidade
+      SELECT ID, Nome, Sexo, Cidade, TIMESTAMPDIFF(YEAR, DataNasc, CURDATE()) AS Idade
       FROM FUNCIONÁRIO 
       ORDER BY Nome
       ''').fetchall()
