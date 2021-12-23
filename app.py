@@ -60,8 +60,15 @@ def get_album(id):
     WHERE IdDisc = %s
     ''', id).fetchall()
     
+  product = db.execute(
+    '''
+    SELECT NumExemplares, Valor 
+    FROM PRODUTO
+    WHERE IdDisc = %s 
+    ''', id).fetchone()
+
   return render_template('album.html', 
-           album=album, genre=genre)
+           album=album, genre=genre, product=product)
 
 @APP.route('/albums/search/<expr>/')
 def search_albums(expr):

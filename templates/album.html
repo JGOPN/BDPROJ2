@@ -31,5 +31,14 @@
       {% endfor %}
       </ul>
   </p>
-  
+  <p>
+    {% if not product %}
+      <b>Produto nao registrado</b>
+    {% elif product.NumExemplares > 0 %}
+      <b>Disponivel para compra!</b> 
+      <b>Valor: </b> €{{ product.Valor }} 
+    {% else %}
+      <b>Produto esgotado</b> 
+    {% endif %}
+  </p>
 {% endblock %}
