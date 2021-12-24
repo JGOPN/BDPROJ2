@@ -64,7 +64,7 @@ CREATE TABLE PEDIDO_FORNECEDOR
     Produto         INT NOT NULL,
 	NumUnidades     INT NOT NULL,
 	DataPedido      DATE NOT NULL,
-    PRIMARY KEY(Fornecedor,Produto),
+    -- PRIMARY KEY(Fornecedor,Produto),
     FOREIGN KEY(Fornecedor) REFERENCES FORNECEDOR(IdFornecedor),
     FOREIGN KEY(Produto) REFERENCES PRODUTO(IdProd)
 );
@@ -132,8 +132,7 @@ CREATE TABLE ENCOMENDA_CLIENTE
     ID INT PRIMARY KEY AUTO_INCREMENT,
     DataPagamento DATE NOT NULL,
     ValorTotal DECIMAL(6,2) NOT NULL,
-    -- DescontoAplicado INT,
-    DescontoAplicado INT NULL,
+    DescontoAplicado INT ,
     Cliente INT NOT NULL,
     FOREIGN KEY(DescontoAplicado) REFERENCES DESCONTO(ID),
     FOREIGN KEY(Cliente) REFERENCES CLIENTE(ID)
