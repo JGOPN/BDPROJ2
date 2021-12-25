@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}{{ search.expr }} {% endblock %}</h1>
+  <h1>Resultados da pesquisa: {% block title %}{{ search.expr }} {% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <h2>Resultados da procura</h2>
   <p><ul>
     {% for alb in album %}      
       <li><a href="/albums/{{ alb.IdDisc }}">{{ alb.Nome}} - {{ alb.Titulo }}</a></li>

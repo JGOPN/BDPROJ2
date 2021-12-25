@@ -38,6 +38,7 @@ def list_albums():
     )
     return render_template('album-list.html', albums=albums)
 
+# Get album by ID
 @APP.route('/albums/<int:id>/')
 def get_album(id):
   album = db.execute(
@@ -68,6 +69,7 @@ def get_album(id):
   return render_template('album.html', 
            album=album, genre=genre, product=product)
 
+# Search album by Title
 @APP.route('/albums/search/<expr>/')
 def search_albums(expr):
   search = { 'expr': expr }
@@ -81,6 +83,7 @@ def search_albums(expr):
   return render_template('album-search.html',
            search=search,album=album)
 
+# Search albums by author
 @APP.route('/albums/searchbyaut/<expr>/')
 def search_albums_byaut(expr):
   search = { 'expr': expr }
@@ -94,8 +97,10 @@ def search_albums_byaut(expr):
   return render_template('album-search-byaut.html',
            search=search,album=album)
 
+# Search albums by genre
 @APP.route('/albums/searchbygen/<expr>/')
 def search_by_genre(expr):
+  search = { 'expr': expr }
   album = db.execute(
       '''
       SELECT IdDisc, Titulo, AUTOR.Nome, Genero
@@ -103,7 +108,7 @@ def search_by_genre(expr):
       WHERE Genero = %s
       ''', expr).fetchall()
 
-  return render_template('album-search-bygen.html', album=album)
+  return render_template('album-search-bygen.html', album=album, search=search)
 
 # FUNCIONARIOS
 @APP.route('/funcionarios/')
@@ -111,7 +116,7 @@ def list_funcionarios():
     funcionarios = db.execute(
       '''
       SELECT ID, Nome, Sexo, Cidade, TIMESTAMPDIFF(YEAR, DataNasc, CURDATE()) AS Idade
-      FROM FUNCIONÁRIO 
+      FROM FUNCIONARIO 
       ORDER BY Nome
       ''').fetchall()
     return render_template('func-list.html',funcionarios=funcionarios)
@@ -120,9 +125,10 @@ def list_funcionarios():
 def get_funcionario(id):
   funcionarios = db.execute(
       '''
-      SELECT ID, Nome, DataNasc, Sexo, Cidade
-      FROM FUNCIONÁRIO 
-      WHERE ID = %s
+      SELECT FUNCIONARIO.Nome, FUNCIONARIO.ID, CARGO.Nome as Cargo
+      FROM FUNCIONARIO JOIN CARGO_FUNCIONARIO ON(FUNCIONARIO.ID = CARGO_FUNCIONARIO.IdFunc)
+      JOIN CARGO ON(CARGO.ID = IdCargo)
+      WHERE FUNCIONARIO.ID = %s
       ''', id).fetchone()
 
   if funcionarios is None:

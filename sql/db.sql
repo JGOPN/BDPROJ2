@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS lojadiscos;
 USE lojadiscos;
 
-DROP TABLE IF EXISTS AUTOR, DISCO, GENERO, GENEROS_DISCO, PRODUTO,FORNECEDOR, FORNECE, FUNCIONÁRIO, CARGO,
+DROP TABLE IF EXISTS AUTOR, DISCO, GENERO, GENEROS_DISCO, PRODUTO,FORNECEDOR, FORNECE, FUNCIONARIO, CARGO, CARGO_FUNCIONARIO,
 DEPARTAMENTO, CLIENTE, DESCONTO, ENCOMENDA_CLIENTE, STATUS_ENCOMENDA;
 
 CREATE TABLE AUTOR
@@ -69,7 +69,7 @@ CREATE TABLE PEDIDO_FORNECEDOR
     FOREIGN KEY(Produto) REFERENCES PRODUTO(IdProd)
 );
 
-CREATE TABLE FUNCIONÁRIO 
+CREATE TABLE FUNCIONARIO 
 (
     ID           INT PRIMARY KEY AUTO_INCREMENT,
     Nome         VARCHAR(64) NOT NULL,
@@ -86,11 +86,19 @@ CREATE TABLE FUNCIONÁRIO
 
 CREATE TABLE CARGO
 (
-    ID             INT PRIMARY KEY AUTO_INCREMENT,
+    ID            INT PRIMARY KEY AUTO_INCREMENT,
     Nome          VARCHAR(64) NOT NULL,
     Salario       DECIMAL(7,2) NOT NULL,
-    FOREIGN KEY(ID) REFERENCES FUNCIONÁRIO(ID),
     Descricao     TEXT
+);
+
+CREATE TABLE CARGO_FUNCIONARIO
+(
+    IdCargo     INT NOT NULL,
+    IdFunc      INT NOT NULL,
+    PRIMARY KEY(IdCargo,IdFunc),
+    FOREIGN KEY(IdCargo) REFERENCES CARGO(ID),
+    FOREIGN KEY(IdFunc) REFERENCES FUNCIONARIO(ID)
 );
 
 CREATE TABLE DEPARTAMENTO
@@ -98,7 +106,7 @@ CREATE TABLE DEPARTAMENTO
     ID             INT PRIMARY KEY AUTO_INCREMENT,
     NomeDepartamento VARCHAR(64) NOT NULL,
     Gerente         INT NOT NULL,
-    FOREIGN KEY(Gerente) REFERENCES FUNCIONÁRIO(ID),
+    FOREIGN KEY(Gerente) REFERENCES FUNCIONARIO(ID),
     Descricao     TEXT
 );
 
@@ -149,7 +157,7 @@ CREATE TABLE STATUS_ENCOMENDA
 
 -- INSERÇÕES
 
-INSERT INTO FUNCIONÁRIO (Nome, DataNasc, Sexo, Cidade, Rua, Num, Andar, CP, Login, Senha) VALUES
+INSERT INTO FUNCIONARIO (Nome, DataNasc, Sexo, Cidade, Rua, Num, Andar, CP, Login, Senha) VALUES
 ('João', '1993-01-01', NULL, 'Porto', 'Rua Manuel', 34, NULL, '965039458', 'joao@gmail.com', 'dfkelosd'),
 ('Maria', '1967-05-01', 'F', 'Lisboa', 'Rua Lima', 54, '3º', '459340239', 'maria@gmail.com', 'gmdslore'),
 ('Pedro', '1979-06-08', 'M', 'Lisboa', 'Rua João II', 222, NULL, '485932058', 'pedro', 'esigdleo'),
@@ -164,6 +172,9 @@ INSERT INTO CARGO (Nome, Salario, Descricao) VALUES
 ('Gerente de Marketing', 300.00, 'Gerente do departamento de marketing'),
 ('Enhenheiro de Software', 800.00, NULL),
 ('Estagiário', 200.00, NULL);
+
+INSERT INTO CARGO_FUNCIONARIO (IdCargo, IdFunc) VALUES
+(1,1), (3,2),(2,3),(2,4),(4,5),(5,6),(5,7);
 
 INSERT INTO DEPARTAMENTO (NomeDepartamento, Gerente, Descricao) VALUES
 ('Administração', 1, NULL),

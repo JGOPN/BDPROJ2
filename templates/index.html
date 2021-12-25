@@ -2,11 +2,6 @@
 
 {% block content %}
 
-<!-- 
-  Conteúdo apenas simples para começar. 
- 
-  Veja aplicação fazendo interface à MovieStream para exemplos concretos.
--->
 <h2>Estatisticas sobre a BD</h2>
 <table>
 <tr>
@@ -27,28 +22,28 @@
 </tr>
 </table>
 
-<h3>Albums</h3>
+<h3>Álbums</h3>
 <p>
    <a href="/albums">Listar todos</a>
 </p>
-<p>Obter informacao por ID:
+<p>Obter informação por ID:
 <form name="mid" action="javascript:window.open('/albums/'+document.forms['mid'].elements['id'].value,'_self')">
    <input value="1" name="id" type="number" min="1"/><input type="submit" value="get"/>
 </form>
 </p>
-<p>Procurar por titulo:
+<p>Pesquisar por título:
   <form name="asearch" action="javascript:window.open('/albums/search/'+document.forms['asearch'].elements['expr'].value,'_self')">
     <input name="expr" id="expr" value="" required/>
     <input type="submit" value="search"/>
   </form>
 </p>
-<p>Procurar por artista:
+<p>Pesquisar por artista:
   <form name="asearchbyaut" action="javascript:window.open('/albums/searchbyaut/'+document.forms['asearchbyaut'].elements['expr'].value,'_self')">
     <input name="expr" id="expr" value="" required/>
     <input type="submit" value="search"/>
   </form>
 </p>
-<p>Procurar por genero:
+<p>Pesquisar por género:
   <form name="asearchbygen" action="javascript:window.open('/albums/searchbygen/'+document.forms['asearchbygen'].elements['expr'].value,'_self')">
     <select name="selectgenero" id="expr">
       {% for genero in generos %}

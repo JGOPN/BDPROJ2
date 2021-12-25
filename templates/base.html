@@ -1,26 +1,16 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
 
-    <title>Loja Discos - A Sua Loja De Discos</title>
-  </head>
-  <body>
-    <nav>
-      <a href="/">Home</a>
-    </nav>
-    
-    <br/>
-    
-    <div class = "container">
-      {% block content %}
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
 
-      {% endblock content %}
-    </div>
+<nav>
+  <a href="/">Inicial</a>
+</nav>
 
-  </body>
-</html>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% block content %}{% endblock %}
+</section>

@@ -1,22 +1,17 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}{{ funcionarios.Nome }} {% endblock %}</h1>
+  <h1>Informações de funcionario: {% block title %}{{ funcionarios.Nome }} {% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <h2>Funcionário info</h2>
   <p>
-    <b>FuncId: </b>{{ funcionarios.ID }}
+    <b>ID: </b>{{ funcionarios.ID }}
   </p>
   <p>
-    <b>Name: </b>{{ funcionarios.Nome }}
+    <b>Nome: </b>{{ funcionarios.Nome }}
   </p>
-  <!-- <p>
-    <b>Departamentos: </b><ul>
-    {% for m  in Departamentos %}      
-      <li><a href="/departamentos/{{ departamentos.ID }}">{{ departamento.NomeDepartamento}}</a></li>
-    {% endfor %}
-    </ul>
-  </p> -->
+  <p>
+    <b>Cargo: </b>{{ funcionarios.Cargo }}
+  </p>
 {% endblock %}

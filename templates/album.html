@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block content %}
-  <h2>Informacoes sobre album</h2>
+  <h2>Informações sobre álbum</h2>
   <p>
-    <b>Album ID: </b>{{ album.IdDisc }}
+    <b>ID: </b>{{ album.IdDisc }}
   </p>
   <p>
-    <b>Titulo: </b>{{ album.Titulo }} ({{ album.Formato }})
+    <b>Título: </b>{{ album.Titulo }} ({{ album.Formato }})
   </p>
   <p>
     <b>Autor: </b><a href="/albums/searchbyaut/{{ album.Nome }}/">{{ album.Nome }}</a>
@@ -19,13 +19,13 @@
     <b>Ano: </b>{{ album.AnoLançamento }}
   </p>
   <p>
-    <b>Duracao: </b>{{ album.Duracao }} 
+    <b>Duração: </b>{{ album.Duracao }} 
   </p>
   <p>
-    <b>Descricao: </b>{{ album.Descricao }} 
+    <b>Descrição: </b>{{ album.Descricao }} 
   </p>
   <p>
-    <b>Generos: </b><ul>
+    <b>Géneros: </b><ul>
       {% for gen in genre %}      
         <li><a href='/albums/searchbygen/{{ gen.Genero }}/'> {{ gen.Genero }} </a> </li>
       {% endfor %}
@@ -33,12 +33,12 @@
   </p>
   <p>
     {% if not product %}
-      <b>Produto nao registrado</b>
+      <b>Produto não registrado</b>
     {% elif product.NumExemplares > 0 %}
-      <b>Disponivel para compra!</b> 
+      <b>Disponível para compra!</b> 
       <b>Valor: </b> €{{ product.Valor }} 
     {% else %}
-      <b>Produto esgotado</b> 
+      <b>Produto indisponível</b> 
     {% endif %}
   </p>
 {% endblock %}
