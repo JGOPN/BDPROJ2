@@ -13,7 +13,7 @@
     <b>Titulo: </b>{{ album.Titulo }} ({{ album.Formato }})
   </p>
   <p>
-    <b>Autor: </b>{{ album.Nome }}
+    <b>Autor: </b><a href="/albums/searchbyaut/{{ album.Nome }}/">{{ album.Nome }}</a>
   </p>
   <p>
     <b>Ano: </b>{{ album.AnoLançamento }}
@@ -27,7 +27,7 @@
   <p>
     <b>Generos: </b><ul>
       {% for gen in genre %}      
-        <li>{{ gen.Genero }}</li>
+        <li><a href='/albums/searchbygen/{{ gen.Genero }}/'> {{ gen.Genero }} </a> </li>
       {% endfor %}
       </ul>
   </p>

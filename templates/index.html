@@ -18,12 +18,12 @@
   <td>{{ stats.products }}</td>
 </tr>
 <tr>
-  <td>Artistas</td>
-  <td>{{ stats.artists }}</td>
+  <td>Compras efetuadas</td>
+  <td>{{ stats.compras }}</td>
 </tr>
 <tr>
-  <td>Clientes</td>
-  <td>{{ stats.customers }}</td>
+  <td>Fornecedores</td>
+  <td>{{ stats.fornecedores }}</td>
 </tr>
 </table>
 
@@ -33,7 +33,7 @@
 </p>
 <p>Obter informacao por ID:
 <form name="mid" action="javascript:window.open('/albums/'+document.forms['mid'].elements['id'].value,'_self')">
-   Album Id:<input value="1" name="id" type="number" min="1"/><input type="submit" value="get"/>
+   <input value="1" name="id" type="number" min="1"/><input type="submit" value="get"/>
 </form>
 </p>
 <p>Procurar por titulo:
@@ -63,14 +63,14 @@
 <p>
    <a href="/funcionarios">Listar todos</a>
 </p>
-<p> Obter informação do funcionário:
+<p> Obter informação por ID:
 <form name="aid" action="javascript:window.open('/funcionarios/'+document.forms['aid'].elements['id'].value,'_self')">
-   Funcionário ID:<input value="1" name="id" type="number" min="1"/>
+   <input value="1" name="id" type="number" min="1"/>
    <input type="submit" value="get"/>
 </form>
 </p>
   
-<p>Pesquisar por nome : 
+<p>Pesquisar por nome: 
   <form name="aasearch" action="javascript:window.open('/funcionarios/search/'+document.forms['asearch'].elements['expr'].value,'_self')">
     <input name="expr" id="expr" value="" required/>
     <input type="submit" value="search"/>

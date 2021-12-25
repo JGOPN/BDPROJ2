@@ -12,11 +12,9 @@ def index():
     stats = {}
     x = db.execute('SELECT COUNT(*) AS products FROM PRODUTO').fetchone()
     stats.update(x)
-    x = db.execute('SELECT COUNT(*) AS artists FROM AUTOR').fetchone()
+    x = db.execute('SELECT COUNT(*) AS compras FROM ENCOMENDA_CLIENTE').fetchone()
     stats.update(x)
-    x = db.execute('SELECT COUNT(*) AS customers FROM CLIENTE').fetchone()
-    stats.update(x)
-    x = db.execute('SELECT COUNT(*) AS staff FROM FUNCIONÁRIO ').fetchone()
+    x = db.execute('SELECT COUNT(*) AS fornecedores FROM FORNECEDOR').fetchone()
     stats.update(x)
     logging.info(stats)
 

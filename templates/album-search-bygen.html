@@ -6,6 +6,9 @@
 
 {% block content %}
   <h2>Resultados da procura</h2>
+  {% if not album %}
+  <b>Nenhum album encontrado para este genero</b>
+  {% endif %}
   <p><ul>
     {% for alb in album %}      
       <li><a href="/albums/{{ alb.IdDisc }}">{{ alb.Nome}} - {{ alb.Titulo }}</a></li>
