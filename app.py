@@ -110,6 +110,36 @@ def search_by_genre(expr):
 
   return render_template('album-search-bygen.html', album=album, search=search)
 
+# ENCOMENDA_CLIENTE
+# Listar todos
+@APP.route('/pedidos/')
+def list_pedidos():
+  pedidos = db.execute(
+      '''
+      SELECT DataPagamento, ValorTotal, DescontoAplicado, StatusEncomenda, Descricao, ValorDesconto, Nome
+      FROM ENCOMENDA_CLIENTE JOIN STATUS_ENCOMENDA ON(ENCOMENDA_CLIENTE.ID = STATUS_ENCOMENDA.Id_Status)
+      LEFT JOIN DESCONTO ON(DescontoAplicado = DESCONTO.ID)
+      JOIN CLIENTE ON(Cliente = CLIENTE.ID)
+      ORDER BY DataPagamento DESC, Cliente
+      ''', ).fetchall()
+  return render_template('pedido-list.html', pedidos=pedidos)
+
+#Listar por email de cliente
+@APP.route('/pedidos/<expr>/')
+def pedidos_email(expr):
+  email = { 'expr': expr }
+  pedidos = db.execute(
+      '''
+      SELECT DataPagamento, ValorTotal, DescontoAplicado, StatusEncomenda, Descricao, ValorDesconto
+      FROM ENCOMENDA_CLIENTE JOIN STATUS_ENCOMENDA ON(ENCOMENDA_CLIENTE.ID = STATUS_ENCOMENDA.Id_Status)
+      LEFT JOIN DESCONTO ON(DescontoAplicado=DESCONTO.ID)
+        WHERE Cliente = 
+          (SELECT ID FROM CLIENTE WHERE Email = %s)
+      ORDER BY DataPagamento DESC, Cliente
+      ''', expr).fetchall()
+
+  return render_template('pedido-byclient.html', email=email, pedidos=pedidos)
+
 # FUNCIONARIOS
 @APP.route('/funcionarios/')
 def list_funcionarios():
