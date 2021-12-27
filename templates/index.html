@@ -54,6 +54,18 @@
   </form>
 </p>
 
+<h3>Pedidos do usuario</h3>
+<p>
+  <a href="/pedidos">Listar todos</a>
+</p>
+<p>
+  <form name="pedidoscliente" action="javascript:window.open('/pedidos/'+document.forms['pedidoscliente'].elements['mail'].value,'_self')">
+    E-mail do cliente:
+     <input value="joana47@gmail.com" name="mail"/>
+     <input type="submit" value="search"/>
+  </form>
+</p>
+
 <h3>Funcionários</h3>
 <p>
    <a href="/funcionarios">Listar todos</a>

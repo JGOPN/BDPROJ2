@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>Pedidos pelo email: {% block title %}{{ email.expr }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+  {% if not pedidos %}
+    <b>Este cliente nao realizou pedidos</b>
+  {% else %}
+  <table> 
+  <tr>
+    <th><b>Data de pagamento</b></th>
+    <th><b>Valor total (Desconto aplicado)</b></th>
+    <th><b>Status da encomenda</b></th>
+    <th><b>Descricao</b></th>
+   </tr>
+
+   
+  {% for ped in pedidos %}
+    <tr>
+      <td>{{ ped.DataPagamento }}</td>
+      <td>{{ ped.ValorTotal }} (
+        {% if not ped.ValorDesconto %}
+          0
+        {% else %}
+          {{ ped.ValorDesconto }}
+        {% endif %}
+        )</td>
+      <td>{{ ped.StatusEncomenda }} </td>
+      <td>{{ ped.Descricao }} </td>
+    </tr>
+  {% endfor %}
+  </table>
+  {% endif %}
+{% endblock %}
