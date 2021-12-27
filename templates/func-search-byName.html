@@ -7,7 +7,7 @@
 {% block content %} 
   <p><ul>
     {% for func in funcionarios %}      
-      <li><a href="/funcionario/{{ func.ID }}">{{ func.Nome}}</a></li>
+      <li><a href="/funcionarios/{{ func.ID }}">{{ func.Nome}}</a></li>
     {% endfor %}
     </ul>
   </p>

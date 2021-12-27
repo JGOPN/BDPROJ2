@@ -171,7 +171,7 @@ def get_funcionario(id):
 
 
 # Search Funcionario by Name
-@APP.route('/funcionario/searchfuncName/<expr>/')
+@APP.route('/funcionarios/searchfuncName/<expr>/')
 def search_by_name(expr):
   search = { 'expr': expr }
   expr = '%' + expr + '%'
