@@ -111,6 +111,8 @@ def search_by_genre(expr):
   return render_template('album-search-bygen.html', album=album, search=search)
 
 # FUNCIONARIOS
+
+#list all employees
 @APP.route('/funcionarios/')
 def list_funcionarios():
     funcionarios = db.execute(
@@ -121,6 +123,7 @@ def list_funcionarios():
       ''').fetchall()
     return render_template('func-list.html',funcionarios=funcionarios)
 
+# get employee by ID
 @APP.route('/funcionarios/<int:id>/')
 def get_funcionario(id):
   funcionarios = db.execute(
@@ -137,3 +140,16 @@ def get_funcionario(id):
   return render_template('func.html', funcionarios=funcionarios)
 
 
+# Search Funcionario by Name
+@APP.route('/funcionario/searchfuncName/<expr>/')
+def search_by_name(expr):
+  search = { 'expr': expr }
+  expr = '%' + expr + '%'
+  funcionarios = db.execute(
+      '''
+      SELECT ID, Nome, DataNasc, Sexo, Cidade
+      FROM FUNCIONARIO
+      WHERE Nome LIKE %s
+      ''', expr).fetchall()
+
+  return render_template('func-search-byName.html', search=search, funcionarios=funcionarios)
